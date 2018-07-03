@@ -1,2 +1,2 @@
-release: cd marketsAcora ; python manage.py migrate
-web: cd marketsAcora ; gunicorn marketAdm.wsgi --log-file -
+release: cd Maverick ; python manage.py migrate
+web: cd Maverick ; gunicorn Maverick.wsgi --log-file -

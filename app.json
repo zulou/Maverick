@@ -1,15 +1,15 @@
 {
-  "name": "marketsAdm",
-  "description": "Django heroku starter kit",
+  "name": "Maverick",
+  "description": "Django Maverick :3",
   "scripts": {
-    "postdeploy": "cd marketsAcora ; python manage.py migrate --run-syncdb"
+    "postdeploy": "cd Maverick ; python manage.py migrate --run-syncdb"
   },
   "env": {
     "ENVIRONMENT": {
       "value": "review"
     },
     "DJANGO_SETTINGS_MODULE": {
-      "value": "marketAdm.settings.heroku"
+      "value": "Maverick.heroku"
     },
     "SECRET_TOKEN": {
       "generator": "secret"
@@ -62,7 +62,7 @@
       },
       "scripts": {
 				"test-setup": "pip install -r requirements/test-settings.txt",
-        "test": "cd marketsAcora ;python manage.py test --settings=marketAdm.settings.test-settings --keepdb"
+        "test": "cd Maverick ;python manage.py test --settings=Maverick.settings.test-settings --keepdb"
       }
     }
   }
