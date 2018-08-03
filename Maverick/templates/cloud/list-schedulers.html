@@ -1,0 +1,65 @@
+{% extends 'template/index.html' %}
+{% block title %} Administración Acora {% endblock %}
+
+{% block navigation %}
+{% endblock %}
+
+{% block content %}
+    <section class="dashboard-header">
+    <div class="container-fluid">
+        <div class="form-group col-sm-12">
+            <button type="button" class="btn btn-outline-primary" id="btn_newPersona"><i class="fa fa-plus"></i> Agregar</button>
+            <!-- Modal -->
+
+
+        </div>
+    </div>
+
+
+
+    <div class="container-fluid">
+        <table id="list-persona" class="display table table-responsive">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Dni</th>
+                    <th>Cliente</th>
+                    <th>Mercado/seccion</th>
+                    <th>NºPuesto</th>
+
+                    <th>Monto</th>
+                    <th>EDITAR</th>
+                    <th>VER</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+    </section>
+{% endblock %}
+{% block js %}
+
+<script>
+
+
+
+$(document).ready(function() {
+    $('#list-persona').DataTable( {
+    data: [
+        new Employee( "Tiger Nixon", "System Architect", "$3,120", "Edinburgh" ),
+        new Employee( "Garrett Winters", "Director", "$5,300", "Edinburgh" )
+    ],
+    columns: [
+        { data: 'name' },
+        { data: 'salary' },
+        { data: 'office' },
+        { data: 'position' }
+    ]
+} );
+});
+
+</script>
+
+
+{% endblock %}

@@ -1,0 +1,199 @@
+{% extends 'template/index.html' %}
+{% load staticfiles%}
+
+{% block title %} IMPRIMIR {% endblock %}
+
+{% block navigation %}
+    <br>
+{% endblock %}
+
+{% block content %}
+    <section class="">
+    <div class="container-fluid">
+        <div class="form-group btn-group-lg text-center col-sm-12">
+            <button type="button" class="btn btn-outline-primary" onclick="imprimirPage('#page');">Imprimir</button>
+            <button type="button" class="btn btn-outline-success" onclick="descargarPdf('#page-A4');">Descargar</button>
+            <button id="quitar" type="button" class="btn btn-outline-danger" onclick="quitarMembrete('#membrete');">Quitar</button>
+        </div>
+    </div>
+    </section>
+    <section id="imprimir">
+    <div class="container-fluid text-center">
+        <span id="page">
+            <div id="page-A4" class="text-left">
+                <div id="membrete" class="text-center membrete">
+                    <img src="{% static 'img/membrete.png' %}" alt="person" class="img-fluid">
+                </div>
+                {% if persona %}
+                <br>
+                <h1 class="text-center"><strong>HISTORIA CLÍNICA</strong></h1>
+                <div class="text-right">
+                    <SPAN>
+                    <table class="table-responsive-sm table-bordered text-center imprimir">
+                        <tr>
+                            <td><strong>Fecha Registro : </strong><i id="fecha_registro">{{ persona.fecha_registro|date:"d/m/Y" }}</i></td>
+                            <td><strong>N° de H.C : </strong><i id="historia_clinica">01-{{ persona.anterior|stringformat:".5d" }}</i></td>
+                        </tr>
+                    </table>
+                    </SPAN>
+                </div>
+
+                <table class="table table-sm table-bordered imprimir">
+                    <tr>
+                        <td class="text-center" colspan="3"><strong>1. FICHA DE IDENTIFICACIÓN</strong></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Apellidos y Nombres : </strong><i>{{ persona.ap_paterno }} {{ persona.ap_materno }}, {{ persona.nombre }}</i></td>
+                        <td colspan="2"><strong>DNI : </strong><i>{{ persona.dni }}</i></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Fecha de Nacimiento : </strong><i>{{ persona.fecha_nacimiento|date:"d/m/Y" }}</i></td>
+                        <td><strong>Edad : </strong><i>{{ persona.edad_actual }}</i></td>
+                        <td><strong>Sexo : </strong><i>{{ persona.sexo }}</i></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Lugar de Nacimiento : </strong><i>{{ persona.lugar_nacimiento }}</i></td>
+                        <td colspan="2"><strong>Dirección : </strong><i>{{ persona.direccion }}</i></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Correo Electrónico : </strong><i>{{ persona.correo_electronico }}</i></td>
+                        <td colspan="2"><strong>Celular : </strong><i>{{ persona.celular }}</i></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Ocupación : </strong><i>{{ persona.ocupacion }}</i></td>
+                        <td colspan="2"><strong></strong><i></i></td>
+                    </tr>
+{#                    <tr>#}
+{#                        <td><strong>Nombre Esposo : </strong><i>{{ persona.esposo }}</i></td>#}
+{#                        <td colspan="2"><strong>celular:</strong><i>{{ persona.esposo_celular }}</i></td>#}
+{#                    </tr>#}
+                    <tr>
+                        <td colspan="3"><strong>Motivo de Consulta : </strong><i></i></td>
+                    </tr>
+                    <tr>
+                        <td colspan="3">&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td colspan="3">&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td colspan="3">&nbsp;</td>
+                    </tr>
+                </table>
+
+
+                <table class="table table-sm table-bordered imprimir">
+                    <tr>
+                        <td class="text-center" colspan="4"><strong>2. ANTECEDENTES GINECO-OBSTÉTRICOS</strong></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Menarquia : </strong><i>{{ persona.menarquia }}</i></td>
+                        <td><strong>R/C : </strong><i>{{ persona.rc }}</i></td>
+                        <td><strong>Gesta(G) : </strong><i>{{ persona.gesta }}</i></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Numero Partos (P) : </strong><i>{{ persona.partos }}</i></td>
+                        <td><strong>Abortos (Ab.) : </strong><i>{{ persona.abortos }}</i></td>
+                        <td><strong>Nacidos vivos (hv) : </strong><i>{{ persona.nacidos_vivos }}</i></td>
+                        <td><strong>Nacidos muertos (hm) : </strong><i>{{ persona.nacidos_muertos }}</i></td>
+                    </tr>
+                    <tr>
+                        <td><strong>FUR : </strong><i>{{ persona.fur }}</i></td>
+                        <td><strong>FPP : </strong><i>{{ persona.fpp }}</i></td>
+                        <td><strong>PI : </strong><i>{{ persona.pi }}</i></td>
+                        <td><strong>Met. Ant.: </strong><i>{{ persona.historia_clinica }}</i></td>
+                    </tr>
+                </table>
+
+                <table class="table table-sm table-bordered imprimir">
+                    <tr>
+                        <td class="text-center" colspan="5"><strong>3. FUNCIONES VITALES</strong></td>
+                    </tr>
+                    <tr>
+                        <td><strong>P/A: </strong><i></i></td>
+                        <td><strong>P: </strong><i></i></td>
+                        <td><strong>T: </strong><i>&nbsp;</i></td>
+                        <td><strong>R: </strong><i>&nbsp;</i></td>
+                        <td><strong>SO2: </strong><i></i></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><strong>Peso: </strong><i></i></td>
+                        <td colspan="2"><strong>Talla: </strong><i></i></td>
+                    </tr>
+                </table>
+
+                <table class="table table-sm table-bordered imprimir">
+                    <tr>
+                        <td class="text-center" colspan="6"><strong>4. EXAMEN OBSTÉTRICO</strong></td>
+                    </tr>
+                    <tr>
+                        <td style="width: 30%"><strong>AU: </strong><i></i></td>
+                        <td rowspan="5" colspan="5" style="width: 50%;"></td>
+                    </tr>
+                    <tr><td><strong>SI: </strong><i></i></td></tr>
+                    <tr><td><strong>PO: </strong><i></i></td></tr>
+                    <tr><td><strong>PRES: </strong><i></i></td></tr>
+                    <tr><td><strong>LCF: </strong><i></i></td></tr>
+                    <tr>
+                        <td colspan="3"><strong>Edema: </strong><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</i></td>
+                        <td colspan="3" style="width: 50%;"><strong>I.Dx: </strong><i></i></td>
+                    </tr>
+                    <tr><td colspan="6"><strong>INDICACIONES</strong><i></i></td></tr>
+                    <tr><td colspan="6">&nbsp;</td></tr>
+                </table>
+                {% endif %}
+            </div>
+        </span>
+    </div>
+    </section>
+{% endblock %}
+{% block js %}
+<script>
+$(document).ready(function() {
+    // Instrucciones a ejecutar al terminar la carga
+    $(document).on("keydown",function(event) {
+        if(event.ctrlKey && event.which === 80){
+            imprimirPage('#page');
+            return false;
+        }
+    });
+
+    $('i').dblclick(function (e) {
+        $(this).addClass('').attr('contenteditable','true');
+    });
+
+    $('i').blur(function (e) {
+        $(this).show().attr('contenteditable','false');
+    })
+});
+
+var hideMembrete = true;
+quitarMembrete = function (nameId) {
+    if(hideMembrete){
+        $(nameId).css({ opacity: 0 });
+        $("#quitar").html('Poner').removeClass("btn-outline-danger").addClass('btn-outline-warning');
+    }
+    else{
+        $(nameId).css({ opacity: 1 });
+        $("#quitar").html('Quitar').removeClass("btn-outline-warning").addClass('btn-outline-danger');
+    }
+    hideMembrete = !hideMembrete;
+};
+
+imprimirPage = function (nameId) {
+    $(document).off("keydown");
+    var tmp = $("body").html();
+    $("body").html($(nameId).html());
+    window.print();
+    $("body").html(tmp);
+};
+
+descargarPdf = function (nameId) {
+    var doc = new jsPDF('p', 'pt', 'A4');
+    doc.addHTML($(nameId)[0], 0 ,-7, function () {
+        doc.save('historiaClinica.pdf');
+    });
+};
+
+</script>
+{% endblock %}

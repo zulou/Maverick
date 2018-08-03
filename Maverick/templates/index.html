@@ -1,0 +1,107 @@
+{% extends 'template/index.html' %}
+{% load staticfiles %}
+
+{% block title %}Computación en la Nube{% endblock %}
+{% block content %}
+
+    <section class="dashboard-header">
+        <div class="container-fluid">
+
+            <div class="col-sm-12">
+                <form id="form-upload" enctype="multipart/form-data">
+
+                    <div class="form-group">
+
+                        <br></br>
+                        {% csrf_token %}
+                        <div class="form-group row">
+                            <label for="colFormLabel" class="col-sm-2 col-form-label">Origen:</label>
+                            <div class="col-sm-10">
+                                <select class="custom-select" name="type" id="type">
+                                    <option selected>seleccione</option>
+                                    <option value="1">Numeros telefonicos</option>
+                                    <option value="2">Facebook Collector</option>
+                                    <option value="3">Google Collector</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="aux" class="col-sm-2 col-form-label">Descripción:</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="description" name="description">
+                            </div>
+                        </div>
+
+                    </div>
+                    <button type="button" class="btn btn-lg btn-primary btn-block" id="btn-programar">Programar</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <a href="http://127.0.0.1:8000/cloud/pauseScheduler/">Pause</a>
+    <a href="http://127.0.0.1:8000/cloud/resumeScheduler">Resume</a>
+    <a href="http://127.0.0.1:8000/cloud/downScheduler/">down</a>
+
+{% endblock %}
+
+
+{% block javascript %}
+
+
+
+
+<script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+<script src="{% static 'vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'vendor/jquery.cookie/jquery.cookie.js' %}"></script>
+<script src="{% static 'js/grasp_mobile_progress_circle-1.0.0.min.js' %}"></script>
+<script src="{% static 'vendor/jquery-validation/jquery.validate.min.js' %}"></script>
+<script src="{% static 'vendor/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js' %}"></script>
+<script src="{% static 'js/front.js' %}"></script>
+<script src="{% static 'js/jquery.dataTables.min.js' %}"></script>
+<script src="{% static 'js/jspdf.min.js' %}"></script>
+<script src="{% static 'js/custom.js' %}"></script>
+<script src="{% static "js/pm/upload.js" %}" type="text/javascript"></script>
+
+{% endblock %}
+{% block js %}
+    <script>
+    url='http://127.0.0.1:8000/'
+   $("#btn-programar").click(function (e) {
+        e.preventDefault();
+    var csrf=$('#form-upload input[name=csrfmiddlewaretoken]').val();
+    var type=parseInt($("#type").val());
+    var description=$("#description").val();
+    var datos;
+       datos={
+        csrfmiddlewaretoken:csrf,
+        type:type,
+        description:description
+
+    };
+
+       function startScheduler(){
+           $.get( url+"cloud/startScheduler", function( data ) {
+                    $( ".result" ).html( data );
+                console.log("success She");
+            });
+       }
+    $.ajax({
+        url: url+'api/Scheduler/',
+        type: "POST",
+        dataType: "json",
+        data:datos,
+        success: function(data) {
+            console.log("success");
+            startScheduler();
+        }
+      });
+
+    });
+
+
+    </script>
+{% endblock %}
+
+
+

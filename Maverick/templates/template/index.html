@@ -1,0 +1,108 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>{% block title %} Cloud Computing {% endblock %}</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet" href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}">
+    <!-- Font Awesome CSS-->
+    <link rel="stylesheet" href="{% static 'vendor/font-awesome/css/font-awesome.min.css' %}">
+    <!-- Custom icon font-->
+    <link rel="stylesheet" href="{% static 'css/fontastic.css' %}">
+
+    <link rel="stylesheet" href="{% static 'css/grasp_mobile_progress_circle-1.0.0.min.css' %}">
+    <!-- Custom Scrollbar-->
+    <link rel="stylesheet" href="{% static 'vendor/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.css' %}">
+    <!-- theme stylesheet-->
+    <link rel="stylesheet" href="{% static 'css/style.blue.css' %}" id="theme-stylesheet">
+    <!-- Custom stylesheet - for your changes-->
+    <link rel="stylesheet" href="{% static 'css/custom.css' %}">
+    <!-- datatables-->
+    <link rel="stylesheet" href="{% static 'css/jquery.dataTables.min.css' %}">
+    <!-- Favicon-->
+    <link rel="shortcut icon" href="{% static "favicon.png" %}">
+
+</head>
+<body>
+<!-- Side Navbar -->
+<nav class="side-navbar shrink">
+    <div class="side-navbar-wrapper">
+        <div class="sidenav-header d-flex align-items-center justify-content-center">
+            <div class="sidenav-header-inner text-center"><img src="{% static 'img/logo2.png' %}" alt="person"
+                                                               class="img-fluid">
+                <h2 class="h5 text-uppercase">Cloud Computing</h2><span class="text-uppercase"></span>
+            </div>
+            <div class="sidenav-header-logo">
+                <a href="#" class="brand-small text-center"><img src="{% static 'img/logo2.png' %}" alt="person"
+                                                                 class="img-fluid"></a>
+            </div>
+        </div>
+        <div class="main-menu">
+            <ul id="side-main-menu" class="side-menu list-unstyled">
+                <li class="{{ menu.home }}"><a href="/Pm/index/"> <i class="fa fa-home"></i><span>Scheduler</span></a>
+                </li>
+                <li class="{{ menu.pacientes }}"><a href="/Pm/scalar/"><i class="fa fa-user"></i><span>Collector</span></a>
+                </li>
+
+
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="page home-page active">
+
+    <header class="header">
+        <nav class="navbar">
+            <div class="container-fluid">
+                <div class="navbar-holder d-flex align-items-center justify-content-between">
+                    <div class="navbar-header"><a id="toggle-btn" href="#" class="menu-btn"><i
+                            class="icon-bars"> </i></a><a href="#" class="navbar-brand">
+                        <div class="brand-text d-none d-md-inline-block"><span></span><strong class="text-primary">
+                            Cloud Computing</strong></div>
+                    </a></div>
+                    <ul class="nav-menu list-unstyled d-flex flex-md-row align-items-md-center">
+                        <li class="nav-item"><a href="#" class="nav-link logout">Logout<i
+                                class="fa fa-sign-out"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <!-- Navigation Section-->
+    {% block navigation %}
+
+    {% endblock %}
+    <!-- Counts Section -->
+    {% block content %}
+        <!-- Header Section-->
+
+    {% endblock %}
+    <footer class="main-footer">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-6">
+                    <p>Cloud Computing &copy; 2017-2019</p>
+                </div>
+                <div class="col-sm-6 text-right">
+
+                    <p>Design by <a href="#">Maverick</a></p>
+
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+</body>
+
+{% block javascript %}
+{% endblock %}
+
+
+{% block js %}
+{% endblock %}
+</html>
